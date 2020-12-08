@@ -1,0 +1,13 @@
+.userImage {
+  object-fit: contain;
+  border-radius: 100px;
+  width: 150px;
+}
+
+.userName {
+  font-size: 50px;
+}
+
+.userId {
+  font-size: 25px;
+}
