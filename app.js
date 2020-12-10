@@ -35,13 +35,11 @@ app.post('/', function (req, res) {
       const userRepos = results[1]
       const reqsLeft = results[2]
 
-      if (userDetails.status === 200) {
-        res.render('profile', {
-          userDetails: userDetails.data,
-          userRepos: userRepos.data,
-          reqsLeft: reqsLeft.data,
-        })
-      }
+      res.render('profile', {
+        userDetails: userDetails.data,
+        userRepos: userRepos.data,
+        reqsLeft: reqsLeft.data,
+      })
     })
     .catch((err) => {
       if (err.response.status === 403) {
