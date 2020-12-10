@@ -4,24 +4,24 @@
   <div class="text-center mt-5">
     <img
       class="userImage mb-3 bg-success p-2"
-      src="<%= userData.avatar_url %>"
+      src="<%= userDetails.avatar_url %>"
       alt=""
     />
-    <h1 class="userName"><%= userData.name %></h1>
-    <p class="userId"><a target="_blank" href="<%= userData.html_url %>">@<%= userData.login %></a></p>
+    <h1 class="userName"><%= userDetails.name %></h1>
+    <p class="userId"><a target="_blank" href="<%= userDetails.html_url %>">@<%= userDetails.login %></a></p>
 
-    <h5 class="mb-4"><%= userData.bio %> </h5>
+    <h5 class="mb-4"><%= userDetails.bio %> </h5>
 
-        <div class="container">
+        <div class="container mt-4">
         <div class="row no-gutters row-cols-auto">
           <div class="col">
-            <p><i class="fas fa-building mr-2"></i> <%= userData.company %></p>
+            <p><i class="fas fa-building mr-2"></i> <%= userDetails.company %></p>
         </div>
           <div class="col">
-            <p><i class="fas fa-map-marker-alt mr-2"></i><%= userData.location %></p>
+            <p><i class="fas fa-map-marker-alt mr-2"></i><%= userDetails.location %></p>
         </div>
           <div class="col">
-            <p><i class="far fa-calendar-alt mr-2"></i>Joined <%= userData.created_at %></p>
+            <p><i class="far fa-calendar-alt mr-2"></i>Joined <%= userDetails.created_at.substring(0, 10) %></p>
         </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title"><%= userData.public_repos %></h5>
+                  <h5 class="card-title"><%= userDetails.public_repos.toLocaleString() %></h5>
                   <p class="card-text">Public Repositories</p>
                 </div>
               </div>
@@ -41,7 +41,7 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title"><%= userData.followers %></h5>
+                  <h5 class="card-title"><%= userDetails.followers.toLocaleString() %></h5>
                   <p class="card-text">Followers</p>
                 </div>
               </div>
@@ -50,7 +50,7 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title"><%= userData.following %></h5>
+                  <h5 class="card-title"><%= userDetails.following.toLocaleString() %></h5>
                   <p class="card-text">Following</p>
                 </div>
               </div>

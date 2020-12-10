@@ -1,8 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const https = require('https')
+const axios = require('axios')
 const ejs = require('ejs')
-const rp = require('request-promise')
 const port = 3000
 
 const app = express()
@@ -18,25 +17,32 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   const username = req.body.userId
 
-  var options = {
-    host: 'api.github.com',
-    path: '/users/' + username,
-    method: 'GET',
-    headers: { 'user-agent': 'node.js' },
+  function getUserDetails() {
+    return axios.get(`https://api.github.com/users/${username}`)
   }
 
-  var request = https.request(options, function (response) {
-    var body = ''
-    response.on('data', function (chunk) {
-      body += chunk.toString()
-    })
+  function getUserRepos() {
+    return axios.get(`https://api.github.com/users/${username}/repos`)
+  }
 
-    response.on('end', function () {
-      res.render('profile', { userData: JSON.parse(body) })
+  Promise.all([getUserDetails(), getUserRepos()])
+    .then(function (results) {
+      const userDetails = results[0]
+      const userRepos = results[1]
+      // console.log(userRepos.data[0].name)
+      // console.log(userDetails.data)
+      if (userDetails.status === 200) {
+        res.render('profile', {
+          userDetails: userDetails.data,
+          userRepos: userRepos.data,
+        })
+      } else if (userDetails.status === 403) {
+        res.render('errors')
+      } else {
+        res.redirect('/')
+      }
     })
-  })
-
-  request.end()
+    .catch((err) => console.log(err))
 })
 
 app.listen(port, function () {
