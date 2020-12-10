@@ -25,24 +25,33 @@ app.post('/', function (req, res) {
     return axios.get(`https://api.github.com/users/${username}/repos`)
   }
 
-  Promise.all([getUserDetails(), getUserRepos()])
+  function getRateLimit() {
+    return axios.get(`https://api.github.com/rate_limit`)
+  }
+
+  Promise.all([getUserDetails(), getUserRepos(), getRateLimit()])
     .then(function (results) {
       const userDetails = results[0]
       const userRepos = results[1]
-      // console.log(userRepos.data[0].name)
-      // console.log(userDetails.data)
+      const reqsLeft = results[2]
+
       if (userDetails.status === 200) {
         res.render('profile', {
           userDetails: userDetails.data,
           userRepos: userRepos.data,
+          reqsLeft: reqsLeft.data,
         })
-      } else if (userDetails.status === 403) {
-        res.render('errors')
+      }
+    })
+    .catch((err) => {
+      if (err.response.status === 403) {
+        res.render('errors', {
+          link: err.response.data.documentation_url,
+        })
       } else {
         res.redirect('/')
       }
     })
-    .catch((err) => console.log(err))
 })
 
 app.listen(port, function () {
