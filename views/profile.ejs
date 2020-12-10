@@ -26,7 +26,7 @@
             <p><i class="fas fa-map-marker-alt mr-2"></i><%= userDetails.location %></p>
         </div>
           <div class="col">
-            <p><i class="far fa-calendar-alt mr-2"></i>Joined <%= userDetails.created_at.substring(0, 10) %></p>
+            <p><i class="far fa-calendar-alt mr-2"></i>Joined <%= new Date(userDetails.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric'}) %></p>
         </div>
           </div>
         </div>
