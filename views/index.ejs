@@ -1,24 +1,29 @@
 <%- include('partials/header') -%>
+<%- include('partials/header') -%>
+  <meta name="description" content="Github Profiles Stalker allow to search and view Github Users by their Username." />
+  <title>Github Profiles Stalker</title>
 
-<div class="text-center mt-5">
-  <i class="fab fa-github fa-4x mt-5"></i>
-  <h2 class="m-4 sm-small">Github Profiles Stalker</h2>
-</div>
+<body>
 
-<div class="container mt-5">
-  <form action="/" method="POST" class="input-group">
-    <input
-      class="form-control py-4 amber-border"
-      type="text"
-      placeholder="Search by Username..."
-      name="userId"
-    />
-    <div class="input-group-append">
-      <button type="submit" class="input-group-text amber lighten-3">
-        <i class="fas fa-search text-grey" aria-hidden="true"></i>
-      </button>
-    </div>
-  </form>
-</div>
+  <div class="text-center mt-5">
+    <i class="fab fa-github fa-4x mt-5"></i>
+    <h2 class="m-4 sm-small">Github Profiles Stalker</h2>
+  </div>
+
+  <div class="container mt-5">
+    <form action="/" method="POST" class="input-group">
+      <input
+        class="form-control py-4 amber-border"
+        type="text"
+        placeholder="Search by Username..."
+        name="userId"
+      />
+      <div class="input-group-append">
+        <button type="submit" class="input-group-text amber lighten-3">
+          <i class="fas fa-search text-grey" aria-hidden="true"></i>
+        </button>
+      </div>
+    </form>
+  </div>
 
 <%- include('partials/footer') -%>
