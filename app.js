@@ -17,12 +17,20 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   const username = req.body.userId
 
+  res.redirect(`/@${username}`)
+})
+
+app.get('/@:userId', function (req, res) {
+  const userName = req.params.userId
+
+  const userId = userName
+
   function getUserDetails() {
-    return axios.get(`https://api.github.com/users/${username}`)
+    return axios.get(`https://api.github.com/users/${userId}`)
   }
 
   function getUserRepos() {
-    return axios.get(`https://api.github.com/users/${username}/repos`)
+    return axios.get(`https://api.github.com/users/${userId}/repos`)
   }
 
   function getRateLimit() {
@@ -50,6 +58,10 @@ app.post('/', function (req, res) {
         res.redirect('/')
       }
     })
+})
+
+app.use(function (req, res) {
+  res.redirect('/')
 })
 
 app.listen(process.env.PORT || port, function () {
