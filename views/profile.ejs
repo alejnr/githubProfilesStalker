@@ -1,5 +1,8 @@
 <%- include('partials/header') -%>
-  <meta name="description" content="<%= userDetails.bio.substring(0, 150) + '...' %>" />
+  <meta 
+  name="description" 
+  content="<% if (userDetails.bio) {%><%= userDetails.bio.substring(0, 150) + '...' %><% } %>" 
+  />
   <title><%= userDetails.name %></title>
 
 <body>

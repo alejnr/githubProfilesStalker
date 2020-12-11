@@ -1,15 +1,26 @@
 <%- include('partials/header') -%>
+  <meta 
+  name="description" 
+  content="" />
+  <title>Github Profiles Stalker</title>
 
-<div class="text-center mt-5">
-  <i class="fab fa-github fa-4x mt-5"></i>
-  <h1 class="m-4">Github Profiles Stalker</h1>
-</div>
+<body>
 
-<div class="container text-center">
-  <p class="pt-3">
-    Oh no, you hit the <a target="_blank" href="<%= link %> ">rate limit</a>!
-    Try again later.
-  </p>
-</div>
+  <div class="m-3">
+    0 / 60 
+    <p>REQUESTS LEFT</p>
+  </div>
+
+  <div class="text-center mt-5">
+    <i class="fab fa-github fa-4x mt-5"></i>
+    <h2 class="m-4 sm-small">Github Profiles Stalker</h2>
+  </div>
+
+  <div class="container text-center">
+    <p class="pt-3">
+      Oh no, you hit the <a target="_blank" href="<%= link %> ">rate limit</a>!
+      Try again later.
+    </p>
+  </div>
 
 <%- include('partials/footer') -%>

@@ -21,9 +21,7 @@ app.post('/', function (req, res) {
 })
 
 app.get('/@:userId', function (req, res) {
-  const userName = req.params.userId
-
-  const userId = userName
+  const userId = req.params.userId
 
   function getUserDetails() {
     return axios.get(`https://api.github.com/users/${userId}`)
