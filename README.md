@@ -1,7 +1,7 @@
 # Github Profiles Stalker
 > Github Profiles Viewer built with the Node.js/Express and the Github API
 
-![screenshot](https://alexmenlah.com/images/githubProfiles.png)
+![screenshot](https://alexmenlah.ga/assets/images/projects/githubProfiles.png)
 
 ## How To
 
