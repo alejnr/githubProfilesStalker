@@ -10,8 +10,29 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
+
 app.get('/', function (req, res) {
-  res.render('index')
+  
+  const randomNumber = Math.floor(Math.random()* 10000) + 1
+  
+  axios.get(`https://api.github.com/users?per_page=1&since=${randomNumber}`)
+  .then(function (response) {
+    res.render('index', {
+      users: response.data
+    })
+
+  })
+  .catch(function (err) {
+    // console.log(err);
+    if (err.response.status === 403) {
+      res.render('errors', {
+        link: err.response.data.documentation_url,
+      })
+    } else {
+      res.redirect('/')
+    }
+  })
+
 })
 
 app.post('/', function (req, res) {
@@ -40,6 +61,8 @@ app.get('/@:userId', function (req, res) {
       const userDetails = results[0]
       const userRepos = results[1]
       const reqsLeft = results[2]
+
+      // console.log(users.data);
 
       res.render('profile', {
         userDetails: userDetails.data,
